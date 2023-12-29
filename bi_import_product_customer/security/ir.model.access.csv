@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gen_partner,gen.partner,model_gen_partner,,1,1,1,1
+access_gen_product_variant,gen.product.variant,model_gen_product_variant,bi_import_product_customer.group_import,1,1,1,1
+access_gen_product,gen.product,model_gen_product,,1,1,1,1

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="available_location_base_user_form">
+			<field name="name">available.to.location.base.form</field>
+			<field name="model">res.users</field>
+			<field name="inherit_id" ref="base.view_users_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='tz']" position="after">
+					<field name="available_location_ids" string="Available Location" widget="many2many_tags" />
+					
+				</xpath>
+				
+			</field>
+		</record>
+	</data>
+</odoo>

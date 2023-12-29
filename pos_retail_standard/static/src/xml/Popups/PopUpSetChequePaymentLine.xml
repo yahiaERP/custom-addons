@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+     <t t-name="PopUpSetChequePaymentLine" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup medium-form touch-scrollable scrollable-y">
+                <div class="card">
+                    <div class="card-content">
+                        <h4 class="card-title"><t t-esc="props.title || '' " /></h4>
+                        <div class="client-details-box clearfix">
+                            <div class="client-details-left">
+                                <div class="row">
+                                    <span class='label'>proprietaire du chéque </span>
+                                    <input class="form-control"
+                                           name="cheque_owner"
+                                           t-on-change="OnChange"
+                                           t-att-value="props.cheque_owner or ''"/>
+                        </div>
+                               
+                        <div class="row">
+                             <span class='label'> Banque </span>
+                                <select class='form-control'
+                                            t-on-change="OnChange"
+                                            name='cheque_bank_id'>
+                                        <t t-foreach='env.pos.banks' t-as="bank" t-key="bank.id">
+                                            <option t-att-value='bank.id'
+                                                    t-att-selected="props.cheque_bank_id and props.cheque_bank_id === bank.id ? true : undefined">
+                                                <t t-esc='bank.name'/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                        </div>
+                            <div class="client-details-right">
+                                <div class="row">
+                                    <span class='label'>Compte Bancaire </span>
+                                    <input class="form-control"
+                                           t-att-value="props.cheque_bank_account or ''"
+                                           name="cheque_bank_account"
+                                           t-on-change="OnChange"/>
+                                </div>
+                                <div class="row">
+                                    <span class='label'>Numéro du chéque </span>
+                                    <input class="form-control"
+                                           t-att-value="props.cheque_check_number or ''"
+                                           name="cheque_check_number"
+                                           t-on-change="OnChange"/>
+                                </div>
+                                <div class="row">
+                                    <span class='label'>Date d'echeance </span>
+                                    <input class="form-control" Type="date"
+                                        t-att-value="props.cheque_DateEcheance" 
+                                        name="cheque_DateEcheance"
+                                           t-on-change="OnChange"/>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <span class="card-issue" t-if="state.error">
+                            <t t-esc="state.error"/>
+                        </span>
+                        <div class="form-footer text-center">
+                            <div class="btn btn-success pull-right" t-on-click="confirm">
+                                <i class="fa fa-save"/>
+                                Save
+                                <span t-if="!env.isMobile"><i class="fa fa-keyboard-o"/>
+                                    <span> Entrer </span></span>
+                            </div>
+                            <div class="btn btn-danger pull-right" t-on-click="cancel">
+                                annuler 
+                                <span t-if="!env.isMobile"><i class="fa fa-keyboard-o"/>
+                                    <span> Echap </span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="RetailProductList" owl="1">
+        <t t-if="env.pos.config.product_view == 'list'">
+            <div class='product-list-container'>
+                <div class="product-list-scroller touch-scrollable">
+                    <table class='summary-table' border="1">
+                        <colgroup>
+                            <col width='2%'/>
+                            <col width='15%' />
+                            <col width='10%'/>
+                            <col width='10%'/>
+                           
+                         </colgroup>
+                        <tr class="receipt-line" >
+                            <td  style="text-align: center">
+                                N°
+                            </td>
+                            
+                            <td  style="text-align: center; color: blue" t-on-click.stop="trigger('trigger-sort-product-fields', {field: 'display_name', int: false})">
+                                Article
+                            </td>
+                            <td style="text-align: center; color: blue" t-on-click.stop="trigger('trigger-sort-product-fields', {field: 'default_code', int: false})">
+                                Référence interne 
+                            </td>
+                            
+                            <td style="text-align: center; color: blue" t-on-click.stop="trigger('trigger-sort-product-fields', {field: 'lst_price', int: true})">
+                               prix 
+                            </td>
+                            
+                        </tr>
+                        <t t-if="props.products.length != 0 and env.pos.config.allow_add_product">
+                            <t t-set="number"   t-value="0"/>
+                            <t t-foreach="props.products" t-as="product" t-key="product.id">
+                                <ProductItem number="number" product="product" />
+                                <t t-set="number" t-value="number +1"/>
+                            </t>
+                        </t>
+                      
+                    </table>
+                </div>
+            </div>
+        </t>
+        <t t-else="">
+         
+        </t>
+
+    </t>
+
+</templates>
